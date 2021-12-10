@@ -104,7 +104,7 @@ function printCards(array, container) {
 printCards(arrayCards, cardContainer);
 
 const likeButton = document.querySelectorAll(".like-button");
-let likeNumb = document.getElementById('like-counter-1');
+let likeNumb = document.querySelectorAll('.js-likes-counter');
 
 for (let i = 0; i < likeButton.length; i++) {
     likeButton[i].addEventListener("click", function() {
@@ -112,13 +112,17 @@ for (let i = 0; i < likeButton.length; i++) {
         likeButton[i].classList.toggle("like-button--liked");
 
         if (likeButton[i].classList.contains('like-button--liked') == true){
-            likeNumb.innerHTML = arrayCards[i].like += 1;
+            likeNumb[i].innerHTML = arrayCards[i].like += 1;
 
         } else {
-            likeNumb.innerHTML = arrayCards[i].like -= 1;
+            likeNumb[i].innerHTML = arrayCards[i].like -= 1;
         }
 
     });
-}
+};
+
+
+
+
 
 
