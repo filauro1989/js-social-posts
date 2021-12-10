@@ -12,7 +12,7 @@ let arrayCards = [
         'time' : '4 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=171',
-        'like' : '80'
+        'like' : 80
     },
     {
         'profile' : "https://unsplash.it/300/300?image=16",
@@ -20,7 +20,7 @@ let arrayCards = [
         'time' : '5 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=172',
-        'like' : '110'
+        'like' : 110
     },
     {
         'profile' : "https://unsplash.it/300/300?image=17",
@@ -28,7 +28,7 @@ let arrayCards = [
         'time' : '6 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=173',
-        'like' : '90'
+        'like' : 90
     },
     {
         'profile' : "https://unsplash.it/300/300?image=18",
@@ -36,7 +36,7 @@ let arrayCards = [
         'time' : '2 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=174',
-        'like' : '45'
+        'like' : 45
     },
     {
         'profile' : "https://unsplash.it/300/300?image=19",
@@ -44,7 +44,7 @@ let arrayCards = [
         'time' : '6 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=175',
-        'like' : '98'
+        'like' : 98
     },
 ];
 
@@ -82,7 +82,7 @@ function printCards(array, container) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -98,10 +98,27 @@ function printCards(array, container) {
     // stampo nel container i dati
     container.innerHTML += templateDiv;
   }
-}
+};
 
 // richiamo la funzione
 printCards(arrayCards, cardContainer);
 
+const likeButton = document.querySelectorAll(".like-button");
+let likeNumb = document.getElementById('like-counter-1');
+
+for (let i = 0; i < likeButton.length; i++) {
+    likeButton[i].addEventListener("click", function() {
+
+        likeButton[i].classList.toggle("like-button--liked");
+
+        if (likeButton[i].classList.contains('like-button--liked') == true){
+            likeNumb.innerHTML = arrayCards[i].like += 1;
+
+        } else {
+            likeNumb.innerHTML = arrayCards[i].like -= 1;
+        }
+
+    });
+}
 
 
