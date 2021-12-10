@@ -9,7 +9,7 @@ let arrayCards = [
     {
         'profile' : "",
         'autore' : 'Phil Mangione',
-        'time' : '4 mesi fa',
+        'time' : "12/20/2001",
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
         'image' : 'https://unsplash.it/600/300?image=171',
         'like' : 80
@@ -71,7 +71,8 @@ function printCards(array, container) {
   // ciclo l'array per selezionare i dati
   for (let i = 0; i < array.length; i++) {
 
-    // assegno variabile obj ad ogni elemento dell'array
+      
+      // assegno variabile obj ad ogni elemento dell'array
     const obj = array[i];
 
     let initials = getInitials (obj.autore);
