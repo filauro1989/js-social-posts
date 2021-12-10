@@ -7,7 +7,7 @@
 
 let arrayCards = [
     {
-        'profile' : "https://unsplash.it/300/300?image=15",
+        'profile' : "",
         'autore' : 'Phil Mangione',
         'time' : '4 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
@@ -23,7 +23,7 @@ let arrayCards = [
         'like' : 110
     },
     {
-        'profile' : "https://unsplash.it/300/300?image=17",
+        'profile' : "",
         'autore' : 'Valerio Giuffrida',
         'time' : '6 mesi fa',
         'post' : 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
@@ -50,6 +50,19 @@ let arrayCards = [
 
 const cardContainer = document.getElementById('container');
 
+// funzione per iniziali
+const getInitials = (name) => {
+    let initials = name.split(' ');
+    
+    if(initials.length > 1) {
+      initials = initials.shift().charAt(0) + initials.pop().charAt(0);
+    } else {
+      initials = name.substring(0, 2);
+    }
+    
+    return initials.toUpperCase();
+}
+
 // creo funzione per inserire le card
 function printCards(array, container) {
   // svuoto il container
@@ -61,6 +74,47 @@ function printCards(array, container) {
     // assegno variabile obj ad ogni elemento dell'array
     const obj = array[i];
 
+    let initials = getInitials (obj.autore);
+
+    if (obj.profile == ''){
+
+        const templateDiv = `
+        <div class="post">
+            <div class="post__header">
+                <div class="post-meta">                    
+                    <div class="post-meta__icon">
+                        <div class="profile-pic-default">
+                            <span>${initials}</span>
+                        </div>                    
+                    </div>
+                    <div class="post-meta__data">
+                        <div class="post-meta__author">${obj.autore}</div>
+                        <div class="post-meta__time">${obj.time}</div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="post__text">${obj.post}</div>
+            <div class="post__image">
+                <img src="${obj.image}" alt="">
+            </div>
+            <div class="post__footer">
+                <div class="likes js-likes">
+                    <div class="likes__cta">
+                        <a class="like-button  js-like-button" data-postid="1">
+                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                            <span class="like-button__label">Mi Piace</span>
+                        </a>
+                    </div>
+                    <div class="likes__counter">
+                        Piace a <b id="like-counter-1" class="js-likes-counter">${obj.like}</b> persone
+                    </div>
+                </div> 
+            </div>            
+        </div>
+        `;
+        container.innerHTML += templateDiv;
+
+    } else {
     // assegno variabile con dati da stampare
     const templateDiv = `
         <div class="post">
@@ -94,9 +148,10 @@ function printCards(array, container) {
             </div>            
         </div>
         `;
-
+        container.innerHTML += templateDiv;
+    }
     // stampo nel container i dati
-    container.innerHTML += templateDiv;
+    // container.innerHTML += templateDiv;
   }
 };
 
@@ -120,9 +175,4 @@ for (let i = 0; i < likeButton.length; i++) {
 
     });
 };
-
-
-
-
-
 
